@@ -1,0 +1,28 @@
+name = "sweet-delights-shop"
+type = "service"
+main = "dist/server/server.js"
+compatibility_date = "2024-12-16"
+
+[env.production]
+name = "sweet-delights-shop-prod"
+
+[build]
+command = "npm run build"
+cwd = "."
+
+[[build.upload.rules]]
+type = "CompiledContentType"
+globs = ["**/*.wasm"]
+fallthrough = true
+
+[[build.upload.rules]]
+type = "Text"
+globs = ["**/*.txt", "**/*.html"]
+fallthrough = true
+
+[[routes]]
+pattern = "/assets/*"
+custom_domain = false
+
+[build.env]
+vars = { }
